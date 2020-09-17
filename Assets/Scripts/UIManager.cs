@@ -5,6 +5,7 @@ using UnityEngine.UI;
 
 public class UIManager : MonoBehaviour
 {
+    public GameObject pauseMenu;
     public Slider healthSlider;
     public Text tokenText;
 
@@ -16,6 +17,11 @@ public class UIManager : MonoBehaviour
     public void UpdateTokens(int tokens)
     {
         tokenText.text = tokens.ToString();
+    }
+
+    public void SetPauseMenu(bool isPaused)
+    {
+        pauseMenu.SetActive(isPaused);
     }
 
 }

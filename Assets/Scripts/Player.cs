@@ -15,7 +15,7 @@ public class Player : MonoBehaviour
     Vector3 movingRight = new Vector3(0f, 0f, 0f);
     Vector3 movingLeft = new Vector3(0f, 180f, 0f);
 
-    Animator animator;
+    public Animator animator;
     Shovel shovel;
     WeaponSlot weaponSlot;
 
@@ -66,10 +66,15 @@ public class Player : MonoBehaviour
         else
             transform.eulerAngles = new Vector3(0f, 180f, 0f);
 
+        Debug.Log("Before move " + transform.position);
+
         transform.position = Vector2.MoveTowards(transform.position,
             new Vector2(transform.position.x + movement, transform.position.y),
             speed * Time.deltaTime);
-        
+
+        Debug.Log("Movement: " + movement);
+        Debug.Log("After move " + transform.position);
+
     }
 
     public void TakeDamage(int damage)

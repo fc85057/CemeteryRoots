@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 138b94dcc263e5d438716dabd38096fa, type: 3}
   m_Name: Shovel
   m_EditorClassIdentifier: 
+  weaponName: Shovel
   damage: 2
   sprite: {fileID: 21300000, guid: c153a66e61b95cf4492c3775b1a1d5b8, type: 3}
   projectile: {fileID: 0}

@@ -5,7 +5,9 @@ using UnityEngine;
 public class StoreManager : MonoBehaviour
 {
     public Transform weaponSlot;
-    public GameObject[] weapons;
+    public GameObject weaponPrefab;
+    // public GameObject[] weapons;
+    public WeaponButton[] weaponButtons;
 
     public GameObject shop;
 
@@ -19,7 +21,21 @@ public class StoreManager : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Tab))
+        tokens = GameManager.Instance.GetTokens();
+
+        foreach(var weaponButton in weaponButtons)
+        {
+            if (tokens >= weaponButton.weaponStats.tokenCost && (!weaponButton.isBought))
+            {
+                weaponButton.SetButton(true);
+            }
+            else
+            {
+                weaponButton.SetButton(false);
+            }
+        }
+
+        if (Input.GetKeyDown(KeyCode.Tab) && !(GameManager.Instance.gameOver))
             SetShopStatus();
     }
 
@@ -39,6 +55,14 @@ public class StoreManager : MonoBehaviour
             GameManager.Instance.player.enabled = true;
             Time.timeScale = 1f;
         }
+    }
+
+    public void SpawnWeapon(GameObject weapon)
+    {
+        GameManager.Instance.SetTokens(-weapon.GetComponent<Weapon>().weaponStats.tokenCost);
+        GameObject newWeapon = Instantiate(weapon, weaponSlot);
+        // newWeapon.GetComponent<Weapon>().weaponStats = weaponStats;
+        newWeapon.SetActive(false);
     }
 
 }

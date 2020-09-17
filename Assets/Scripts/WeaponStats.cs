@@ -6,7 +6,9 @@ using UnityEngine;
 public class WeaponStats : ScriptableObject
 {
 
+    public string weaponName;
     public int damage;
+    public int tokenCost;
     public Sprite sprite;
     public GameObject projectile;
 
